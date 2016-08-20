@@ -1,0 +1,48 @@
+package Exam1Test;
+
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.URL;
+
+public class GetFileTest {
+
+	public static void getURLResource(String ourputFile, String urlStr) throws Exception {
+		
+		FileWriter fw = new FileWriter(ourputFile);
+		PrintWriter pw = new PrintWriter(fw);
+		URL resourceUrl = new URL(urlStr);
+		InputStream content = (InputStream) resourceUrl.getContent();
+		BufferedReader in = new BufferedReader(new InputStreamReader(content));
+		String line;
+		while ((line = in.readLine()) != null) {
+			pw.println(line);
+			
+		}
+		pw.close();
+		fw.close();
+	
+	
+	
+	}
+	
+
+
+	public static void main(String[] agrs)
+	{
+		
+		try {
+			
+			System.out.println("begin");
+			getURLResource("target.pdf", "http://files.saas.hand-china.com/java/target.pdf");
+			System.out.println("end");
+		
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
